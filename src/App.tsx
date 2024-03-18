@@ -1,6 +1,12 @@
 import React from "react";
-import { AppLayout } from "./components/layout/lauout";
+import { Router } from "./components/router";
 
-const App: React.FC = () => <AppLayout />;
+const App: React.FC = () => {
+  return (
+    <>
+      <Router />
+    </>
+  );
+};
 
 export default App;

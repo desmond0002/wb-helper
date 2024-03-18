@@ -19,3 +19,8 @@ export type InitFileType = {
   country: string;
 };
 export type DataSet = { [index: string]: WorkSheet; };
+
+export type SplitType = {
+  name: string;
+  divider: number;
+}

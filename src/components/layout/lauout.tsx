@@ -1,25 +1,39 @@
 import React from "react";
-import { Layout, Menu, theme, Input } from "antd";
-import { read, utils, WorkSheet, writeFile } from "xlsx";
-import { DataTable } from "../../components/table";
+import { Alert, Layout, Menu, MenuProps, theme } from "antd";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getFile } from "../../features/file/fileSelector";
 
 const { Header, Content } = Layout;
 
-const items = [
+const items: MenuProps["items"] = [
   {
-    key: "1",
     label: "Главная",
+    key: "/",
   },
   {
-    key: "2",
+    label: "Телеграм",
+    key: "/telegram",
+  },
+  {
+    label: "Создание поставки",
+    key: "/income",
+  },
+  {
     label: "О приложении",
+    key: "/about",
   },
 ];
 
 const AppLayout: React.FC = () => {
+  const navigate = useNavigate();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  const onClick: MenuProps["onClick"] = (e) => {
+    navigate(e.key);
+  };
+  const fileData = useSelector(getFile);
 
   return (
     <Layout
@@ -33,8 +47,16 @@ const AppLayout: React.FC = () => {
           defaultSelectedKeys={["1"]}
           items={items}
           style={{ flex: 1, minWidth: 0 }}
+          onClick={onClick}
         />
       </Header>
+      {fileData.length === 0 && (
+        <Alert
+          message="Файл с данными не выбран. Выберите файл."
+          type="info"
+          style={{ marginTop: "16px" }}
+        />
+      )}
       <Content style={{ display: "flex", padding: "48px", flex: "1 1 auto" }}>
         {/* <Breadcrumb style={{ margin: "16px 0" }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -50,8 +72,8 @@ const AppLayout: React.FC = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <div>
-            <DataTable />
+          <div style={{ width: "100%" }}>
+            <Outlet />
           </div>
         </div>
       </Content>

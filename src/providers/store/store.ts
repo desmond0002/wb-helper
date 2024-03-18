@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { FileReducer } from '../../features/file/fileSlice'
+import { SplitsReducer } from '../../features/splits/splitsSlice'
 
 export const store = configureStore({
-  reducer: FileReducer,
+  reducer: {FileReducer, SplitsReducer},
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
