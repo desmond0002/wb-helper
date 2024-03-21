@@ -37,7 +37,7 @@ export const IncomePage: React.FC = () => {
     splits.forEach((item) => {
       cols.push({
         key: item.name,
-        title: "Склад",
+        title: item.name,
         dataIndex: item.name,
       });
     });
@@ -74,7 +74,9 @@ export const IncomePage: React.FC = () => {
         ]}
       />
       {step === 1 && <FirstStep nextStep={buildSplits} />}
-      {step === 2 && <SecondStep nextStep={nextStep} prevStep={prevStep} />}
+      {step === 2 && (
+        <SecondStep columns={columns} nextStep={nextStep} prevStep={prevStep} />
+      )}
       {step === 3 && <ThirdStep prevStep={prevStep} />}
     </div>
   );
