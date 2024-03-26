@@ -5,6 +5,7 @@ import { MainPage } from "../../pages/MainPage";
 import { AboutPage } from "../../pages/AboutPage";
 import { TelegramPage } from "../../pages/TelegramPage";
 import { IncomePage } from "../../pages/IncomePage";
+import { SalesPage } from "../../pages/SalesPage";
 
 const Router: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const Router: React.FC = () => {
           <Route path="/telegram" element={<TelegramPage />} />
           <Route path="/income" element={<IncomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/sales" element={<SalesPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

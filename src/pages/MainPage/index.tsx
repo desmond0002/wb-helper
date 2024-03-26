@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFile } from "../../features/file/fileSelector";
 import { read, utils } from "xlsx";
 import { FileActions } from "../../features/file/fileSlice";
+import { getSalesData } from "../../features/salesData/salesDataSelector";
+import { SalesDataActions } from "../../features/salesData/salesDataSlice";
 
 const columns: ColumnsType<InitFileType> = [
   {
@@ -93,6 +95,7 @@ const columns: ColumnsType<InitFileType> = [
 export const MainPage: React.FC = () => {
   const dispatch = useDispatch();
   const fileData = useSelector(getFile);
+  const salesData = useSelector(getSalesData);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFileUpload = (e: any) => {
@@ -103,12 +106,19 @@ export const MainPage: React.FC = () => {
         const data = e.target?.result;
         if (data) {
           const workbook = read(data, { type: "binary" });
+
           const sheetName = workbook.SheetNames[0];
+          const sheetNameSales = workbook.SheetNames[1];
+
           const sheet = workbook.Sheets[sheetName];
+          const sheetSales = workbook.Sheets[sheetNameSales];
+
           const parsedData = utils.sheet_to_json(sheet);
+          const parsedSalesData = utils.sheet_to_json(sheetSales);
           // setData(parsedData);
           dispatch(FileActions.setFile(parsedData));
-          console.log(parsedData);
+          dispatch(SalesDataActions.setSalesData(parsedSalesData));
+          console.log(parsedSalesData);
         }
       } catch (error) {
         alert(error);

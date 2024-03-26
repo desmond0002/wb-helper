@@ -20,6 +20,10 @@ const items: MenuProps["items"] = [
     key: "/income",
   },
   {
+    label: "Продажи",
+    key: "/sales",
+  },
+  {
     label: "О приложении",
     key: "/about",
   },
