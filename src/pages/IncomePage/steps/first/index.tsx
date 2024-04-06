@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SplitsActions } from "../../../../features/splits/splitsSlice";
 import { SplitType } from "../../../../types/types";
 import { getSplits } from "../../../../features/splits/splitsSelector";
+import { Recomendations } from "../../../../components/recomendation";
 
 interface IProps {
   nextStep: () => void;
@@ -69,6 +70,7 @@ export const FirstStep: React.FC<IProps> = ({ nextStep }) => {
           </Row>
         </Card>
       ))}
+      <Recomendations />
       {splits ? (
         splits.length > 0 && (
           <Button onClick={nextStep}>Построить разбиение</Button>
