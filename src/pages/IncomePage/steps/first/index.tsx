@@ -32,6 +32,7 @@ export const FirstStep: React.FC<IProps> = ({ nextStep }) => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <Recomendations />
       <Select
         mode="multiple"
         allowClear
@@ -70,7 +71,7 @@ export const FirstStep: React.FC<IProps> = ({ nextStep }) => {
           </Row>
         </Card>
       ))}
-      <Recomendations />
+
       {splits ? (
         splits.length > 0 && (
           <Button onClick={nextStep}>Построить разбиение</Button>
