@@ -62,7 +62,7 @@ export const SalesPage: React.FC = () => {
           shtSum += dataRow.sht;
         }
       });
-      if (shtSum === 0) resultRow.push([]);
+      if (shtSum === 0 && barcodeSum === 0) resultRow.push([]);
       else
         resultRow.push([
           shtSum,
