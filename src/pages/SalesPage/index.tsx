@@ -26,7 +26,7 @@ export const SalesPage: React.FC = () => {
           shtSum += dataRow.sht;
         }
       });
-      if (shtSum === 0) resultRow.push([]);
+      if (shtSum === 0 && barcodeSum === 0) resultRow.push([]);
       else {
         const g =
           Number(fileRow.Заказано) > 0
@@ -36,7 +36,7 @@ export const SalesPage: React.FC = () => {
           shtSum,
           g,
           (shtSum / inputValue).toFixed(0),
-          barcodeSum / (shtSum / inputValue) > 0 ? g : 0,
+          (g / (shtSum / inputValue)).toFixed(0),
         ]);
       }
     });
